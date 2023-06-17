@@ -31,29 +31,12 @@ const NewsSection = ({ limit }) => {
     setShowModal(false);
   };
 
-  const handleParagraphClick = (news) => {
-    setSelectedNews(news);
-    setShowModal(true);
-  };
-
-  const extractFirst20Words = (text) => {
-    const words = text.split(' ');
-    if (words.length <= 20) {
-      return text;
-    }
-    return words.slice(0, 20).join(' ') + '...';
-  };
-
   const loadMoreNews = () => {
     setVisibleNews((prevVisibleNews) => prevVisibleNews + limit);
   };
 
-  const loadLessNews = () => {
-    setVisibleNews((prevVisibleNews) => prevVisibleNews - limit);
-  };
-
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 m-20">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 m-20 text-black">
       {newsData.slice(0, visibleNews).map((news) => (
         <div
           key={news.id}
@@ -67,46 +50,24 @@ const NewsSection = ({ limit }) => {
           />
           <div className="p-4">
             <h3 className="text-lg font-semibold mb-2">{news.title}</h3>
-            {news.body.length > 20 ? (
-              <p className="text-black">
-                {extractFirst20Words(news.body)}
-                {news.body.length > 20 && (
-                  <span
-                    className="text-blue-500 cursor-pointer"
-                    onClick={() => handleParagraphClick(news)}
-                  >
-                    ...More
-                  </span>
-                )}
-              </p>
-            ) : (
-              <p>{news.body}</p>
-            )}
+            <p className="text-black">
+              {news.body}
+            </p>
           </div>
         </div>
       ))}
-      <div className="flex gap-4">
-      {limit && visibleNews < newsData.length && limit !== Infinity && (
+      {visibleNews < newsData.length && (
         <button
-          className="bg-blue-500 w-28 h-10 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-blue-500 w-28 h-10 text-white py-2 px-4 rounded hover:bg-blue-600 mt-4"
           onClick={loadMoreNews}
         >
           Load More
         </button>
       )}
-      {visibleNews > limit && (
-        <button
-          className="bg-blue-500 w-28 h-10 text-white py-2 px-4 rounded hover:bg-blue-600"
-          onClick={loadLessNews}
-        >
-          Load Less
-        </button>
-      )}
-      </div>
       <Modal isOpen={showModal} onClose={closeModal}>
         {selectedNews && (
-          <div className="text-black">
-            <h2 className="text-2xl text-black font-semibold mb-4">{selectedNews.title}</h2>
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">{selectedNews.title}</h2>
             <img
               src={`https://picsum.photos/500/300?random=${selectedNews.id}`}
               alt="News"

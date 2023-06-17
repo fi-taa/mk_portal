@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 py-4">
+    <nav className="bg-[#146C94] py-4">
       <ul className="flex justify-center space-x-4 text-white">
         <li>
           <button

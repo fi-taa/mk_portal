@@ -6,10 +6,10 @@ const Modal = ({ isOpen, onClose, children }) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 ">
+    <div className="fixed inset-0 flex items-center justify-center z-50 text-black">
       <div className="fixed inset-0 bg-black opacity-50"></div>
       <div className="fixed inset-0 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-6 w-1/2">
+        <div className="bg-white rounded-lg p-2 w-full sm:w-3/4 lg:w-1/2 lg:h-3/4">
           <div className="relative">
             <button
               className="absolute top-0 right-0 mt-4 mr-4 text-gray-500 hover:text-gray-800"
@@ -29,8 +29,9 @@ const Modal = ({ isOpen, onClose, children }) => {
                 />
               </svg>
             </button>
-            <div className="mt-8 h-64 overflow-y-auto">
-              {children}</div>
+            <div className="mt-8  overflow-y-auto">
+              {children}
+            </div>
           </div>
         </div>
       </div>

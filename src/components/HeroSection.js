@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <section className="bg-gray-200 py-8">
+    <section className="bg-gray-100 shadow-lg shadow-black/20 text-[#146C94] py-8">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Your Web Portal</h1>
         <p className="text-lg mb-8">Discover the Ethiopian Orthodox Tewahedo Church</p>
